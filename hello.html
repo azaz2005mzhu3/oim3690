@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello | Menglu (Alice)</title>
+    <style>
+        :root {
+            --rose: #e11d48;
+            --rose-dark: #9f1239;
+            --rose-light: #fff1f2;
+            --blush: #ffe4e6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem 3rem;
+            line-height: 1.7;
+            color: #3f2a2e;
+            background: linear-gradient(180deg, var(--rose-light) 0%, #ffffff 260px);
+        }
+
+        header {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--rose-dark);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            list-style: none;
+            padding: 0;
+            margin: 1.25rem 0 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--rose-dark);
+            font-weight: 600;
+            padding: 0.5rem 1.1rem;
+            border: 2px solid var(--rose);
+            border-radius: 999px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        nav a:hover {
+            background: var(--rose);
+            color: #fff;
+        }
+
+        section, article, aside {
+            background: #fff;
+            border: 1px solid var(--blush);
+            border-radius: 16px;
+            padding: 1.5rem 1.75rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 14px rgba(225, 29, 72, 0.08);
+        }
+
+        h2 {
+            color: var(--rose);
+            border-bottom: 2px solid var(--blush);
+            padding-bottom: 0.4rem;
+            margin-top: 0;
+        }
+
+        section ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        section ul li {
+            background: var(--blush);
+            color: var(--rose-dark);
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        mark {
+            background: var(--blush);
+            color: var(--rose-dark);
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--rose-dark);
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding-top: 1.25rem;
+            border-top: 2px solid var(--blush);
+            font-size: 0.9rem;
+            color: #8a6a6e;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hello, I'm Menglu (Alice)</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-me.html">About Me</a></li>
+                <li><a href="hello.html">Hello</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>My Interests</h2>
+            <ul>
+                <li>Golf</li>
+                <li>Travel</li>
+                <li>Music</li>
+                <li>Gym</li>
+                <li>Baking</li>
+            </ul>
+        </section>
+
+        <article>
+            <h2>A Bit More About Me</h2>
+            <p>
+                I'm a golfer on the varsity team, and I'm also learning to build things on
+                the web with the help of <abbr title="Artificial Intelligence">AI</abbr> tools.
+            </p>
+            <details>
+                <summary>Why I like coding</summary>
+                <p>
+                    It lets me turn ideas into something real that anyone can open in a
+                    browser.
+                </p>
+            </details>
+        </article>
+
+        <aside>
+            <p><mark>Fun fact:</mark> this page was last updated on <time datetime="2026-09-10">September 10, 2026</time>.</p>
+        </aside>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Menglu (Alice). Built for OIM3690.</p>
+    </footer>
+</body>
+</html>
