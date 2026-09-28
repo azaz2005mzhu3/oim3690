@@ -7,3 +7,7 @@
 3. Hands-on, project-based learning 
 4. Be creative
 
+## Projects
+
+- [Ariel Portfolio](../ariel-portfolio/index.html)
+
