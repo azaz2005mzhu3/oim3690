@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Hearing Glasses — Lightning Talk</title>
+<meta name="description" content="Lightning talk: AI Hearing Glasses — Is AI becoming part of our senses?">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- SLIDE 1 -->
+  <section class="slide slide--hero is-active" data-slide="1">
+    <div class="hero-glow hero-glow--a"></div>
+    <div class="hero-glow hero-glow--b"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+      <span class="eyebrow eyebrow--light">Tech News · October 2026</span>
+      <h1 class="title title--hero">AI Hearing Glasses</h1>
+      <p class="subtitle subtitle--light">What if AI could improve one of your five senses?</p>
+
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 520 220" class="glasses-svg">
+          <defs>
+            <linearGradient id="lensGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2fb6ff" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#0a7cff" stop-opacity="0.05"/>
+            </linearGradient>
+            <linearGradient id="frameGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#eaf4ff"/>
+              <stop offset="100%" stop-color="#8fc7ff"/>
+            </linearGradient>
+          </defs>
+          <!-- left lens -->
+          <circle cx="140" cy="110" r="78" fill="url(#lensGrad)" stroke="url(#frameGrad)" stroke-width="5"/>
+          <!-- right lens -->
+          <circle cx="380" cy="110" r="78" fill="url(#lensGrad)" stroke="url(#frameGrad)" stroke-width="5"/>
+          <!-- bridge -->
+          <path d="M218 104 Q260 84 302 104" fill="none" stroke="url(#frameGrad)" stroke-width="5" stroke-linecap="round"/>
+          <!-- temples -->
+          <path d="M62 100 Q20 92 6 78" fill="none" stroke="url(#frameGrad)" stroke-width="5" stroke-linecap="round"/>
+          <path d="M458 100 Q500 92 514 78" fill="none" stroke="url(#frameGrad)" stroke-width="5" stroke-linecap="round"/>
+          <!-- sound waves emanating from right lens -->
+          <path class="wave wave-1" d="M470 110 q14 0 14 -22" fill="none" stroke="#5fd4ff" stroke-width="4" stroke-linecap="round"/>
+          <path class="wave wave-2" d="M486 110 q26 0 26 -42" fill="none" stroke="#5fd4ff" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+          <path class="wave wave-3" d="M502 110 q38 0 38 -62" fill="none" stroke="#5fd4ff" stroke-width="4" stroke-linecap="round" opacity="0.45"/>
+          <!-- AI spark on left lens -->
+          <g class="spark">
+            <path d="M140 78 l8 24 24 8 -24 8 -8 24 -8 -24 -24 -8 24 -8 z" fill="#ffffff" opacity="0.9"/>
+          </g>
+        </svg>
+      </div>
+
+      <span class="badge badge--glass">Legato AI Hearing Glasses</span>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 -->
+  <section class="slide slide--light" data-slide="2">
+    <div class="slide-inner">
+      <span class="eyebrow">How It Works</span>
+      <h2 class="title">AI That Helps You Hear</h2>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 10v4h3l5 4V6L6 10H3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M16 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <p class="flow-label">Background Noise</p>
+          <p class="flow-sub">Music · Conversations · Café Buzz</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step flow-step--accent">
+          <div class="flow-icon">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2 2M16.4 16.4l2 2M5.6 18.4l2-2M16.4 7.6l2-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <p class="flow-label">AI Processing</p>
+          <p class="flow-sub">Separates the sounds</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M8 9a4 4 0 1 1 8 0v3a4 4 0 1 1-8 0V9z" stroke="currentColor" stroke-width="1.6"/><path d="M5 12a7 7 0 0 0 14 0M12 19v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <p class="flow-label">Clearer Speech</p>
+          <p class="flow-sub">Focus on who you're with</p>
+        </div>
+      </div>
+
+      <div class="badge-row">
+        <span class="badge badge--outline">No Camera</span>
+        <span class="badge badge--outline">No Recording</span>
+        <span class="badge badge--outline">On-Device AI Processing</span>
+      </div>
+
+      <p class="key-sentence">Instead of making everything louder, AI helps decide what you actually want to hear.</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 -->
+  <section class="slide slide--light" data-slide="3">
+    <div class="slide-inner slide-inner--senses">
+      <span class="eyebrow">Beyond Hearing</span>
+      <h2 class="title">Is AI Becoming Part of Our Senses?</h2>
+
+      <div class="senses">
+        <div class="sense">
+          <span class="sense-icon">👁</span>
+          <span class="sense-label">Sight</span>
+        </div>
+        <div class="sense sense--active">
+          <span class="sense-icon">👂</span>
+          <span class="sense-label">Hearing</span>
+          <span class="sense-tag">AI is here</span>
+        </div>
+        <div class="sense">
+          <span class="sense-icon">✋</span>
+          <span class="sense-label">Touch</span>
+        </div>
+        <div class="sense">
+          <span class="sense-icon">👃</span>
+          <span class="sense-label">Smell</span>
+        </div>
+        <div class="sense">
+          <span class="sense-icon">👅</span>
+          <span class="sense-label">Taste</span>
+        </div>
+      </div>
+
+      <p class="transition-line">AI used to live on our screens.<br>Now it is starting to change how we experience the physical world.</p>
+
+      <p class="discussion-question">As AI becomes better at seeing, hearing, and understanding the world around us&mdash; will we start relying on AI to enhance our five senses? Where could this lead?</p>
+    </div>
+  </section>
+
+  <!-- NAV CONTROLS -->
+  <button class="nav-arrow nav-arrow--prev" id="prevBtn" aria-label="Previous slide">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="nav-arrow nav-arrow--next" id="nextBtn" aria-label="Next slide">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <div class="nav-bar">
+    <div class="nav-dots" id="navDots">
+      <button class="dot is-active" data-goto="1" aria-label="Go to slide 1"></button>
+      <button class="dot" data-goto="2" aria-label="Go to slide 2"></button>
+      <button class="dot" data-goto="3" aria-label="Go to slide 3"></button>
+    </div>
+    <div class="slide-counter" id="slideCounter">01 / 03</div>
+  </div>
+
+  <footer class="source-footer">
+    Source: <a href="https://techcrunch.com/2026/10/01/hearing-tech-startup-legato-launches-its-ai-hearing-glasses/" target="_blank" rel="noopener noreferrer">TechCrunch — "Hearing tech startup Legato launches its AI hearing glasses," October 1, 2026</a>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
