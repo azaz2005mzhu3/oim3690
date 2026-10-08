@@ -9,5 +9,5 @@
 
 ## Projects
 
-- [Ariel Portfolio](../ariel-portfolio/index.html)
+- MP1: Website for Someone Else — [repo](https://github.com/azaz2005mzhu3/ariel-portfolio) | [live](https://azaz2005mzhu3.github.io/ariel-portfolio/)
 
