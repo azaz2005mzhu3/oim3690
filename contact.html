@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Menglu (Alice)</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Hello, I'm Menglu (Alice)</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-me.html">About Me</a></li>
+                <li><a href="hello.html">Hello</a></li>
+                <li><a href="todo.html">To-Do</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Contact Me</h2>
+            <form class="contact-form" action="https://oim.zhili.dev/echo/view" method="POST">
+                <fieldset>
+                    <legend>Your details</legend>
+
+                    <div class="form-field">
+                        <label for="name">Name <span class="required" aria-hidden="true">*</span></label>
+                        <input type="text" id="name" name="name" required autocomplete="name" aria-describedby="name-hint">
+                        <p id="name-hint" class="field-hint">Required.</p>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">Email <span class="required" aria-hidden="true">*</span></label>
+                        <input type="email" id="email" name="email" required autocomplete="email" aria-describedby="email-hint">
+                        <p id="email-hint" class="field-hint">Required. We'll never share it.</p>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="e.g. 555-123-4567" aria-describedby="phone-hint">
+                        <p id="phone-hint" class="field-hint">Optional, in case email is slow.</p>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="subject">Subject <span class="required" aria-hidden="true">*</span></label>
+                        <select id="subject" name="subject" required aria-describedby="subject-hint">
+                            <option value="" disabled selected>Choose a topic...</option>
+                            <option value="general">General inquiry</option>
+                            <option value="collaboration">Collaboration</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <p id="subject-hint" class="field-hint">Required.</p>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="message">Message <span class="required" aria-hidden="true">*</span></label>
+                        <textarea id="message" name="message" rows="5" required aria-describedby="message-hint"></textarea>
+                        <p id="message-hint" class="field-hint">Required.</p>
+                    </div>
+                </fieldset>
+
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Menglu (Alice). Built for OIM3690.</p>
+    </footer>
+</body>
+</html>

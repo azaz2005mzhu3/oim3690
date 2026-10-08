@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do | Menglu (Alice)</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/todo.css">
+</head>
+<body>
+    <header>
+        <h1>Hello, I'm Menglu (Alice)</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-me.html">About Me</a></li>
+                <li><a href="hello.html">Hello</a></li>
+                <li><a href="todo.html">To-Do</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="todo-app">
+            <h2>My To-Do List</h2>
+
+            <form id="todo-form" class="todo-form">
+                <input
+                    type="text"
+                    id="todo-input"
+                    placeholder="Add a new task..."
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit">Add</button>
+            </form>
+
+            <ul id="todo-list" class="todo-list"></ul>
+
+            <p id="todo-empty" class="todo-empty">No tasks yet. Add one above!</p>
+
+            <div class="todo-footer">
+                <span id="todo-count">0 tasks left</span>
+                <button id="todo-clear-completed" type="button">Clear completed</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Menglu (Alice). Built for OIM3690.</p>
+    </footer>
+
+    <script src="js/todo.js"></script>
+</body>
+</html>

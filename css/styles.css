@@ -112,3 +112,89 @@ footer {
   color: #8a6a6e;
   text-align: center;
 }
+
+.contact-form {
+  max-width: 500px;
+}
+
+.contact-form fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-form legend {
+  font-weight: 700;
+  color: var(--rose-dark);
+  padding: 0 0 0.75rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 1.1rem;
+}
+
+.contact-form label {
+  font-weight: 600;
+  color: var(--rose-dark);
+}
+
+.contact-form .required {
+  color: var(--rose);
+}
+
+.field-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #8a6a6e;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  border: 2px solid var(--blush);
+  border-radius: 10px;
+  background: var(--rose-light);
+  color: #3f2a2e;
+  resize: vertical;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible,
+.contact-form select:focus-visible {
+  outline: 3px solid var(--rose);
+  outline-offset: 2px;
+  border-color: var(--rose);
+}
+
+.contact-form input:invalid:not(:placeholder-shown),
+.contact-form textarea:invalid:not(:placeholder-shown) {
+  border-color: #b91c1c;
+}
+
+.contact-form select:invalid {
+  color: #8a6a6e;
+}
+
+.contact-form button {
+  margin-top: 0.5rem;
+  background: var(--rose);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.7rem 1.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.contact-form button:hover,
+.contact-form button:focus-visible {
+  background: var(--rose-dark);
+}
