@@ -5,18 +5,91 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>MZhu3 | Personal Homepage</title>
         <style>
+            * {
+                box-sizing: border-box;
+            }
             body {
                 font-family: Arial, sans-serif;
                 max-width: 900px;
                 margin: 2rem auto;
-                padding: 0 1rem;
+                padding: 0 2rem;
                 line-height: 1.6;
+                font-size: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
+            }
+            h1 {
+                font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+            }
+            h2 {
+                font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem);
             }
             .model-box {
                 background: #f4f4f4;
                 border-left: 5px solid #3b82f6;
                 padding: 1rem 1.25rem;
                 margin: 1rem 0 2rem;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+            .interests {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                list-style: none;
+                margin: 0 0 2rem;
+                padding: 0;
+            }
+            .interests li {
+                background: #eef2ff;
+                border-radius: 0.5rem;
+                padding: 1rem;
+                text-align: center;
+                font-weight: bold;
+            }
+            /* breakpoint badge, visible only to show current layout mode while resizing */
+            body::after {
+                content: "Desktop layout";
+                position: fixed;
+                right: 0.75rem;
+                bottom: 0.75rem;
+                background: #3b82f6;
+                color: #fff;
+                font-size: 0.75rem;
+                font-family: Arial, sans-serif;
+                padding: 0.35rem 0.6rem;
+                border-radius: 999px;
+                z-index: 999;
+            }
+            @media (max-width: 768px) {
+                body {
+                    margin: 1rem auto;
+                    padding: 0 1rem;
+                }
+                body::after {
+                    content: "Tablet layout";
+                    background: #f59e0b;
+                }
+                .interests {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            @media (max-width: 480px) {
+                body {
+                    padding: 0 0.75rem;
+                }
+                body::after {
+                    content: "Mobile layout";
+                    background: #ef4444;
+                }
+                .model-box {
+                    padding: 0.75rem 1rem;
+                    margin: 0.75rem 0 1.5rem;
+                }
+                .interests {
+                    grid-template-columns: 1fr;
+                }
             }
         </style>
     </head>
@@ -29,7 +102,7 @@
         </p>
 
         <h2>My Interests</h2>
-        <ul>
+        <ul class="interests">
             <li>Web development</li>
             <li>Data and technology</li>
             <li>Creative problem-solving</li>
