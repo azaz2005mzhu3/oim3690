@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Discount</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 480px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            line-height: 1.6;
+        }
+        h1 {
+            font-size: 1.75rem;
+        }
+        .discount-card {
+            background: #f4f4f4;
+            border-left: 5px solid #3b82f6;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .discount-row {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .discount-row label {
+            font-weight: 600;
+        }
+        .discount-row input[type="number"] {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .discount-row input[type="number"]:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        .discount-row input[type="checkbox"] {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+        .discount-row button {
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1.1rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .discount-row button:hover {
+            background: #2563eb;
+        }
+        #result {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Member Discount</h1>
+
+    <div class="discount-card">
+        <div class="discount-row">
+            <label for="total">Cart total ($)</label>
+            <input type="number" id="total" value="100" step="1">
+        </div>
+        <div class="discount-row">
+            <label for="isMember">Member</label>
+            <input type="checkbox" id="isMember">
+        </div>
+        <div class="discount-row">
+            <button onclick="showDiscount()">Calculate</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function getDiscount(total, isMember) {
+            // members get $15 off, non-members get $5 off
+            if (isMember) {
+                return 15;
+            } else {
+                return 5;
+            }
+        }
+
+        function showDiscount() {
+            const total = Number(document.getElementById('total').value);
+            const isMember = document.getElementById('isMember').checked;
+            const discount = getDiscount(total, isMember);
+            const finalPrice = total - discount;
+            document.getElementById('result').textContent =
+                `Discount: $${discount} — Final price: $${finalPrice}`;
+        }
+    </script>
+</body>
+</html>
