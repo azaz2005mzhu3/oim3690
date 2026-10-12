@@ -8,30 +8,48 @@
             * {
                 box-sizing: border-box;
             }
+            :root {
+                --rose: #e11d48;
+                --rose-dark: #9f1239;
+                --rose-light: #fff1f2;
+                --blush: #ffe4e6;
+                --rose-glow: rgba(225, 29, 72, 0.18);
+            }
             body {
-                font-family: Arial, sans-serif;
+                font-family: "Segoe UI", Arial, sans-serif;
                 max-width: 900px;
                 margin: 2rem auto;
-                padding: 0 2rem;
+                padding: 0 2rem 3rem;
                 line-height: 1.6;
                 font-size: clamp(1rem, 0.9rem + 0.4vw, 1.125rem);
+                color: #3f2a2e;
+                background: linear-gradient(180deg, var(--rose-light) 0%, #ffffff 320px);
             }
             h1 {
                 font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+                color: var(--rose-dark);
+                letter-spacing: -0.02em;
             }
             h2 {
                 font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem);
+                color: var(--rose);
+                border-bottom: 2px solid var(--blush);
+                padding-bottom: 0.4rem;
             }
             .model-box {
-                background: #f4f4f4;
-                border-left: 5px solid #3b82f6;
+                background: var(--rose-light);
+                border-left: 5px solid var(--rose);
+                border-radius: 0 12px 12px 0;
                 padding: 1rem 1.25rem;
                 margin: 1rem 0 2rem;
+                box-shadow: 0 4px 14px rgba(225, 29, 72, 0.08);
             }
             img {
                 max-width: 100%;
                 height: auto;
                 display: block;
+                border-radius: 16px;
+                box-shadow: 0 8px 20px rgba(225, 29, 72, 0.18);
             }
             .interests {
                 display: grid;
@@ -42,11 +60,25 @@
                 padding: 0;
             }
             .interests li {
-                background: #eef2ff;
-                border-radius: 0.5rem;
+                background: linear-gradient(135deg, var(--blush), var(--rose-light));
+                color: var(--rose-dark);
+                border-radius: 0.75rem;
                 padding: 1rem;
                 text-align: center;
                 font-weight: bold;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            .interests li:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 18px rgba(225, 29, 72, 0.12);
+            }
+            a {
+                color: var(--rose-dark);
+                font-weight: 600;
+            }
+            a:hover,
+            a:focus-visible {
+                color: var(--rose);
             }
             /* breakpoint badge, visible only to show current layout mode while resizing */
             body::after {
@@ -54,7 +86,7 @@
                 position: fixed;
                 right: 0.75rem;
                 bottom: 0.75rem;
-                background: #3b82f6;
+                background: var(--rose);
                 color: #fff;
                 font-size: 0.75rem;
                 font-family: Arial, sans-serif;

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 480px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            line-height: 1.6;
+        }
+        h1 {
+            font-size: 1.75rem;
+        }
+        .converter-card {
+            background: #f4f4f4;
+            border-left: 5px solid #3b82f6;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .converter-row {
+            display: flex;
+            gap: 0.6rem;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        .converter-row label {
+            font-weight: 600;
+        }
+        .converter-row input[type="number"] {
+            flex: 1;
+            padding: 0.5rem 0.75rem;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .converter-row input[type="number"]:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        .converter-row button {
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1.1rem;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .converter-row button:hover {
+            background: #2563eb;
+        }
+        .converter-result {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Temperature Converter</h1>
+
+    <div class="converter-card">
+        <div class="converter-row">
+            <label for="celsius-input">Celsius</label>
+            <input type="number" id="celsius-input" placeholder="Enter °C" autocomplete="off">
+            <button type="button" id="convert-btn">Convert</button>
+        </div>
+        <p class="converter-result" id="fahrenheit-result">Fahrenheit: --</p>
+    </div>
+
+    <h1>Bonus: Kilometers ⇄ Miles</h1>
+    <div class="converter-card">
+        <div class="converter-row">
+            <label for="km-input">Kilometers</label>
+            <input type="number" id="km-input" placeholder="Enter km" autocomplete="off">
+        </div>
+        <p class="converter-result" id="miles-result">Miles: --</p>
+    </div>
+
+    <script>
+        function toFahrenheit(celsius) {
+            return celsius * 9 / 5 + 32;
+        }
+
+        const celsiusInput = document.getElementById("celsius-input");
+        const fahrenheitResult = document.getElementById("fahrenheit-result");
+        const convertBtn = document.getElementById("convert-btn");
+
+        function updateFahrenheit() {
+            const celsius = Number(celsiusInput.value);
+            fahrenheitResult.textContent = `Fahrenheit: ${toFahrenheit(celsius)}`;
+        }
+
+        convertBtn.addEventListener("click", updateFahrenheit);
+        celsiusInput.addEventListener("input", updateFahrenheit);
+
+        // Bonus conversion: kilometers to miles, updates live as you type
+        const kmInput = document.getElementById("km-input");
+        const milesResult = document.getElementById("miles-result");
+
+        function toMiles(km) {
+            return km * 0.621371;
+        }
+
+        kmInput.addEventListener("input", () => {
+            const km = Number(kmInput.value);
+            milesResult.textContent = `Miles: ${toMiles(km).toFixed(2)}`;
+        });
+    </script>
+</body>
+</html>
