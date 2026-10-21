@@ -10,4 +10,5 @@
 ## Projects
 
 - MP1: Website for Someone Else — [repo](https://github.com/azaz2005mzhu3/ariel-portfolio) | [live](https://azaz2005mzhu3.github.io/ariel-portfolio/)
+- MP2: GPA & Grade Calculator — [repo](https://github.com/azaz2005mzhu3/gpa-grade-calculator) | [live](https://azaz2005mzhu3.github.io/gpa-grade-calculator/)
 
