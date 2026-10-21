@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist | Menglu (Alice)</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/playlist.css">
+</head>
+<body>
+    <header>
+        <h1>Hello, I'm Menglu (Alice)</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-me.html">About Me</a></li>
+                <li><a href="hello.html">Hello</a></li>
+                <li><a href="todo.html">To-Do</a></li>
+                <li><a href="playlist.html">Playlist</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="playlist-app">
+            <h2>My Playlist</h2>
+
+            <form id="playlist-form" class="playlist-form">
+                <input
+                    type="text"
+                    id="song-input"
+                    placeholder="Add a song title..."
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit">Add Song</button>
+            </form>
+
+            <ul id="playlist" class="playlist-list"></ul>
+
+            <p id="playlist-empty" class="playlist-empty">No songs yet. Add one above!</p>
+
+            <div class="playlist-footer">
+                <span id="playlist-count">0 songs</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Menglu (Alice). Built for OIM3690.</p>
+    </footer>
+
+    <script src="js/playlist.js"></script>
+</body>
+</html>
