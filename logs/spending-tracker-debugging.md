@@ -82,8 +82,8 @@ Final checks with Console open:
 
 ## Repository submission
 
-- Put spending-tracker.html in the root of the existing oim3690 repository.
-- Optionally keep this record in logs/spending-tracker-debugging.md. The slide explicitly requires the HTML file; it does not require this separate record.
-- Commit and push the change, then verify the file on GitHub.
-- The fixed HTML and this record were prepared in a local checkout of azaz2005mzhu3/oim3690. Check the repository commit history to confirm the remote submission.
-- After personally completing the browser checks, describe the actual observations in the weekly notes if useful.
+- Committed spending-tracker.html at the root of azaz2005mzhu3/oim3690 and this optional record under logs/.
+- Published both files to main in commit f0cbf14e11b001e41ec0e321978ca65de41c52d0 and fetched them back from GitHub to verify their contents.
+- The slide requires the HTML file; this separate debugging record is supplementary.
+- The GitHub Pages URL returned HTTP 404 during verification, so no successful live-site browser test is claimed. Open the downloaded HTML locally to perform the browser checks above.
+- After personally completing the browser checks, describe your actual observations in the weekly notes if useful.
