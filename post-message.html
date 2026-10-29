@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Board</title>
+</head>
+<body>
+  <h1>Post to the Message Board</h1>
+
+  <form id="message-form">
+    <label for="message-input">Your message</label>
+    <input id="message-input" type="text" autocomplete="off">
+    <button type="submit">Post Message</button>
+  </form>
+  <p id="status-message" role="status" aria-live="polite"></p>
+
+  <script>
+    const form = document.getElementById("message-form");
+    const messageInput = document.getElementById("message-input");
+    const statusMessage = document.getElementById("status-message");
+
+    async function postMessage(text) {
+      try {
+        const response = await fetch("https://oim.zhili.dev/message", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-Token": "azaz2005mzhu3"
+          },
+          body: JSON.stringify({ message: text })
+        });
+
+        if (!response.ok) {
+          throw new Error("HTTP error: " + response.status);
+        }
+
+        statusMessage.textContent = "Message posted successfully!";
+        messageInput.value = "";
+      } catch (error) {
+        statusMessage.textContent = "Failed to post message. Please try again.";
+        console.error("Failed to post message:", error);
+      }
+    }
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const message = messageInput.value.trim();
+      if (message === "") {
+        statusMessage.textContent = "Please enter a message before posting.";
+        messageInput.focus();
+        return;
+      }
+
+      await postMessage(message);
+    });
+  </script>
+</body>
+</html>
