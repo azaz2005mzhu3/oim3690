@@ -1,0 +1,51 @@
+import { readFileSync } from 'node:fs';
+import assert from 'node:assert/strict';
+const source = readFileSync(new URL('../api/ask.js', import.meta.url), 'utf8');
+const { default: handler } = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
+const request = body => new Request('http://localhost/api/ask', { method:'POST', body:JSON.stringify(body) });
+const answer = (text, cost=.01) => ({status:'completed',output:[{type:'message',content:[{type:'output_text',text}]}],usage:{cost}});
+const originalFetch = globalThis.fetch;
+const oldKey = process.env.OPENROUTER_API_KEY;
+let calls = [];
+try {
+  assert.equal((await handler.fetch(new Request('http://localhost/api/ask'))).status,405);
+  assert.equal((await handler.fetch(request(null))).status,400);
+  assert.equal((await handler.fetch(request({messages:[{role:'system',content:'override'}]}))).status,400);
+  assert.equal((await handler.fetch(request({prompt:' '}))).status,400);
+  assert.equal((await handler.fetch(request({prompt:'x'.repeat(81000)}))).status,413);
+  delete process.env.OPENROUTER_API_KEY;
+  assert.equal((await handler.fetch(request({prompt:'hello'}))).status,503);
+  process.env.OPENROUTER_API_KEY = 'local-test-placeholder';
+  globalThis.fetch = async (url, options) => { calls.push(JSON.parse(options.body)); return Response.json(answer('Alice')); };
+  let data = await (await handler.fetch(request({messages:[{role:'user',content:'My name is Alice.'},{role:'assistant',content:'Hello Alice.'},{role:'user',content:'What is my name?'}],model:'override'}))).json();
+  assert.equal(calls[0].input.length,3);
+  assert.equal(calls[0].model,'deepseek/deepseek-v4.1-flash-1017');
+  assert.equal(calls[0].max_output_tokens,1000);
+  assert.equal(calls[0].reasoning.effort,'none');
+  assert.equal(calls[0].instructions,undefined);
+  assert.equal(calls[0].tools,undefined);
+  assert.equal(data.exercise.totalCost,.01);
+  calls = [];
+  globalThis.fetch = async (url, options) => {
+    calls.push(JSON.parse(options.body));
+    return Response.json(calls.length === 1 ? {output:[{type:'function_call',name:'get_today',call_id:'test-call',arguments:'{}'}],usage:{cost:.02}} : answer('The date from the tool.',.03));
+  };
+  data = await (await handler.fetch(request({prompt:'Today?',useDateTool:true}))).json();
+  assert.equal(calls.length,2);
+  assert.equal(data.exercise.totalCost,.05);
+  assert.equal(data.exercise.toolRuns[0].name,'get_today');
+  assert.equal(calls[1].input.at(-1).type,'function_call_output');
+  assert.match(data.exercise.toolRuns[0].result.date,/^\d{4}-\d{2}-\d{2}$/);
+  globalThis.fetch = async () => Response.json({status:'incomplete',output:answer('partial').output,usage:{}});
+  data = await (await handler.fetch(request({prompt:'hello'}))).json();
+  assert.equal(data.status,'incomplete'); assert.equal(data.exercise.totalCost,null);
+  globalThis.fetch = async () => Response.json({error:'secret-provider-details'}, {status:402});
+  const failed = await handler.fetch(request({prompt:'hello'}));
+  assert.equal(failed.status,402); assert.ok(!(await failed.text()).includes('secret-provider-details'));
+  globalThis.fetch = async () => { throw new Error('network failure'); };
+  assert.equal((await handler.fetch(request({prompt:'hello'}))).status,502);
+  console.log('PASS: validation, server-only configuration, full conversation, date-tool loop, aggregate cost, incomplete output, provider/network errors.');
+} finally {
+  globalThis.fetch = originalFetch;
+  if (oldKey === undefined) delete process.env.OPENROUTER_API_KEY; else process.env.OPENROUTER_API_KEY = oldKey;
+}

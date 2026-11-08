@@ -1,58 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ask AI</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask AI · OIM3690</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f7fb;color:#18324b;font:17px/1.6 system-ui,sans-serif}main{max-width:850px;margin:auto;padding:32px 20px}h1{margin-bottom:0}a{color:#17588d}.muted,small{color:#4e6477}.toolbar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:20px 0}button,select,textarea{font:inherit;border:1px solid #9bb0c0;border-radius:8px;padding:10px}button{min-height:44px;cursor:pointer;background:#fff;color:#18324b}button[type=submit]{background:#17588d;color:#fff}button:disabled{opacity:.6;cursor:wait}textarea{width:100%;min-height:120px;resize:vertical}#chat{display:grid;gap:16px;margin:22px 0}article{padding:16px 20px;background:white;border:1px solid #d5e0e9;border-radius:12px;overflow-wrap:anywhere}article.user{background:#e4effb}.content{white-space:pre-wrap}pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;background:#edf2f6}#status{min-height:28px}details{margin:16px 0}:focus-visible{outline:3px solid #bf700b;outline-offset:3px}
+</style>
 </head>
-<body>
-  <h1>Ask AI</h1>
-  <textarea id="prompt" placeholder="Ask AI anything..."></textarea>
-  <button id="askBtn">Ask</button>
-  <p id="answer"></p>
-
-  <script>
-    // This page works only on your vercel.app link. Live Server and GitHub Pages
-    // cannot run the function in api/ask.js, so there the Ask button fails.
-
-    // Sends your prompt to your own function at /api/ask. The function adds the
-    // key and calls the model, so no key appears anywhere on this page.
-    async function askAI(prompt) {
-      const response = await fetch('/api/ask', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt })
-      });
-      if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
-      }
-      const data = await response.json();
-      // A model that reasons first puts a reasoning item ahead of the answer,
-      // so find the item of type message, then read its text.
-      const message = data.output.find(item => item.type === 'message');
-      return message.content[0].text;
-    }
-
-    const askBtn = document.querySelector('#askBtn');
-    askBtn.addEventListener('click', async () => {
-      const prompt = document.querySelector('#prompt').value;
-      const answerEl = document.querySelector('#answer');
-      // Turn the button off until the answer arrives, so a second click
-      // cannot send, and pay for, a second request.
-      askBtn.disabled = true;
-      // A call takes a few seconds, so show something while you wait.
-      answerEl.textContent = 'Thinking...';
-      try {
-        // textContent shows the answer as plain text. innerHTML would run any
-        // HTML the model wrote.
-        answerEl.textContent = await askAI(prompt);
-      } catch (error) {
-        answerEl.textContent = 'Error: ' + error.message;
-      } finally {
-        // finally runs whether the call worked or failed.
-        askBtn.disabled = false;
-      }
-    });
-  </script>
-</body>
-</html>
+<body><main>
+<a href="index.html">← Course home</a><h1>Ask AI</h1><p class="muted">OIM3690 · LLM API lab</p>
+<p>Your messages go through this site's Vercel function to OpenRouter and its model provider. Avoid private information. Chat history is saved in this browser.</p>
+<div class="toolbar">
+<button id="newChat" type="button">New Chat</button>
+<label>Mode <select id="mode"><option value="plain">Plain (class experiments)</option><option value="recipe">Recipe assistant (3 bullets)</option></select></label>
+<label><input type="checkbox" id="dateTool"> Enable get_today tool</label>
+</div>
+<details><summary>Class exercises</summary>
+<p>Use Plain mode, leave the date tool off, and start a New Chat for each independent test. Write your prediction before clicking Ask.</p>
+<ol>
+<li>Ask for one Babson coffee-shop name three times, today's date twice, and the classroom once.</li>
+<li>Paste “Answer only from this syllabus. If it does not say, say so.”, the <a href="https://oim3690.github.io/syllabus/" target="_blank" rel="noopener">whole syllabus</a>, then your question. Test the room, proposal deadline twice, and parking policy.</li>
+<li>In a New Chat, say “My name is Alice.”, then “What is my name?” Check Network → ask → Payload for both turns.</li>
+<li>Start a New Chat, enable get_today, ask today's date, and inspect Response → exercise → toolRuns.</li>
+</ol></details>
+<p id="costs">Last answer: — · Total this page: $0.000000</p>
+<section id="chat" aria-label="Conversation" aria-live="polite"></section>
+<form id="askForm"><label for="prompt">Your message</label>
+<textarea id="prompt" placeholder="Ask AI anything…" required maxlength="60000"></textarea>
+<button id="askBtn" type="submit">Ask</button></form>
+<p id="status" role="status"></p>
+<details><summary>Latest response JSON (also available in Network)</summary><pre id="raw">No response yet.</pre></details>
+<script>
+// Adapted from the instructor's ai-chat.html. No API key belongs here.
+const $ = id => document.getElementById(id);
+const storageKey = 'oim3690-ai-chat-v1';
+let messages = [], totalCost = 0, busy = false;
+try {
+  const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+  if (Array.isArray(saved)) messages = saved.filter(m => m && ['user','assistant'].includes(m.role) && typeof m.content === 'string');
+} catch { $('status').textContent = 'Saved chat could not be loaded. You can still chat.'; }
+function save() {
+  try { localStorage.setItem(storageKey, JSON.stringify(messages)); }
+  catch { $('status').textContent = 'Browser storage unavailable; this chat will not survive a reload.'; }
+}
+// Plain text is deliberate: model HTML cannot execute in the page.
+function render() {
+  $('chat').replaceChildren();
+  for (const message of messages) {
+    const article = document.createElement('article'); article.className = message.role;
+    const label = document.createElement('strong'); label.textContent = message.role === 'user' ? 'You' : 'AI';
+    const content = document.createElement('div'); content.className = 'content'; content.textContent = message.content;
+    article.append(label, content); $('chat').append(article);
+  }
+}
+$('newChat').addEventListener('click', () => {
+  messages = []; save(); render(); $('raw').textContent = 'No response yet.';
+  $('status').textContent = ''; $('prompt').value = ''; $('prompt').focus();
+});
+$('askForm').addEventListener('submit', async event => {
+  event.preventDefault(); if (busy) return;
+  const prompt = $('prompt').value.trim(); if (!prompt) return;
+  // Every request resends earlier turns; the API does not remember them.
+  const outgoing = [...messages, { role: 'user', content: prompt }];
+  const body = JSON.stringify({ messages: outgoing, mode: $('mode').value, useDateTool: $('dateTool').checked });
+  if (body.length > 80000 || outgoing.length > 100) { $('status').textContent = 'Conversation too long. Start a New Chat.'; return; }
+  busy = true; ['askBtn','newChat','mode','dateTool'].forEach(id => $(id).disabled = true);
+  $('status').textContent = 'Thinking…'; messages.push({ role:'user', content:prompt }); render();
+  try {
+    const response = await fetch('/api/ask', { method:'POST', headers:{'Content-Type':'application/json'}, body, signal:AbortSignal.timeout(190000) });
+    const data = await response.json(); $('raw').textContent = JSON.stringify(data,null,2);
+    if (!response.ok) throw new Error(data.error?.message || `Request failed: ${response.status}`);
+    const text = (data.output ?? []).filter(item => item.type === 'message')
+      .flatMap(item => item.content ?? []).filter(part => part.type === 'output_text').map(part => part.text).join('\n');
+    if (text) messages.push({ role:'assistant', content:text }); else messages.pop();
+    const cost = data.exercise ? data.exercise.totalCost : data.usage?.cost;
+    if (typeof cost === 'number' && Number.isFinite(cost)) totalCost += cost;
+    $('costs').textContent = `Last answer: ${typeof cost === 'number' ? '$'+cost.toFixed(6) : 'not reported'} · Total this page: $${totalCost.toFixed(6)}`;
+    $('status').textContent = data.status === 'incomplete' ? 'The answer was cut off. Any partial text is shown above.' : text ? 'Done.' : 'No answer text returned. Inspect the response JSON.';
+    if (text) $('prompt').value = ''; save(); render();
+  } catch (error) {
+    messages.pop(); render();
+    $('status').textContent = `Error: ${error.name === 'TimeoutError' ? 'The request took too long. Try again.' : error.message} Use the Vercel URL; GitHub Pages and Live Server cannot run /api/ask.`;
+  } finally {
+    busy = false; ['askBtn','newChat','mode','dateTool'].forEach(id => $(id).disabled = false);
+  }
+});
+render();
+</script></main></body></html>
