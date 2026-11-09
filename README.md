@@ -15,7 +15,7 @@
 
 ## LLM API lab
 
-- [Ask AI](ai-chat.html): deploy this course repo on Vercel to run the server function.
+- [Ask AI](https://oim3690.vercel.app/ai-chat.html): open the deployed chat. Its server function runs at `/api/ask`.
 - [Exercises, predictions and live verification checklist](logs/llm-api-tasks.md).
 - `api/ask.js` reads `OPENROUTER_API_KEY` from Vercel Environment Variables. Never add the course key to this repository.
 - Local mocked checks: `node tests/llm-api.test.mjs`.

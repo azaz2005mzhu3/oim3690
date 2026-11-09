@@ -5,8 +5,8 @@ Source: https://oim3690.github.io/topics/llm-api/slides/#/13
 ## Status
 
 Code is prepared for slides 13, 24, 26 and the cost option on slide 29.
-Live deployment and model-response experiments are pending Vercel setup and the course key.
-Predictions below are expectations, not observed model answers. No live results are claimed.
+The stable Vercel homepage responds, but the live `/api/ask` route currently returns HTTP 500, so no model-response experiment has passed yet.
+Predictions below are expectations, not observed model answers.
 
 ## Deploy (slide 13)
 
@@ -14,12 +14,12 @@ Predictions below are expectations, not observed model answers. No live results 
 2. Use the repository root. This is a plain HTML site; select Other if asked for a framework, with no build command.
 3. Add `OPENROUTER_API_KEY` using the course key from Canvas. Enter the key only in Vercel, never in HTML, GitHub or a screenshot.
 4. Deploy. If the variable was added after deployment, redeploy.
-5. Open `https://<your-project>.vercel.app/ai-chat.html`.
+5. Open `https://oim3690.vercel.app/ai-chat.html`.
 6. Open DevTools → Network, click Ask, then inspect `ask` → Payload and Response.
 
 Prediction: the response is a JSON object with status, output and usage. The answer should be in an output item whose type is message, with output_text content. Usage should report input/output tokens and possibly cost. A reasoning item may precede the message, so output[0] is not a reliable way to find it. The app adds exercise.toolRuns and exercise.totalCost.
 
-Observed status / fields / token counts: **Pending live test.**
+Observed deployment check: the chat page loads at the project URL. A POST to `/api/ask` returned HTTP 500 before a response JSON was available. Redeploy the latest commit and repeat the Network check before recording model output or token counts.
 
 ## What the model knows (slide 15)
 
