@@ -15,7 +15,7 @@
 
 ## LLM API lab
 
-- [Ask AI](https://oim3690.vercel.app/ai-chat.html): open the deployed chat. Its server function runs at `/api/ask`.
+- [Ask AI](ai-chat.html): the chat page calls the Vercel server function at `/api/ask`. The current Vercel API route returns HTTP 500 and needs a successful Vercel deployment before the chat can answer.
 - [Exercises, predictions and live verification checklist](logs/llm-api-tasks.md).
 - `api/ask.js` reads `OPENROUTER_API_KEY` from Vercel Environment Variables. Never add the course key to this repository.
 - Local mocked checks: `node tests/llm-api.test.mjs`.
@@ -23,8 +23,9 @@
 
 ## Stock quote API lab
 
-- [Stock Quote](https://oim3690.vercel.app/quote.html) calls the server-side function at `/api/quote`.
+- [Stock Quote](quote.html) calls the server-side function at `/api/quote`. The current Vercel deployment does not yet include this page or function.
 - `api/quote.js` reads `FINNHUB_API_KEY` from the Vercel project environment; the browser never receives the key.
 - Add a separate Finnhub key for this project in Vercel under **Settings → Environment Variables**, for both Production and Preview, then redeploy.
+- After deploying successfully, open `https://<your-project>.vercel.app/quote.html` and check `/api/quote?symbol=AAPL` in DevTools → Network.
 - Keep `config.js` as a local placeholder only. It is ignored by Git and is not used by the quote page.
 - GitHub Pages and Live Server cannot run `/api/quote`; test the deployed Vercel URL.
