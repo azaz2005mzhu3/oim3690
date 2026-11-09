@@ -20,3 +20,11 @@
 - `api/ask.js` reads `OPENROUTER_API_KEY` from Vercel Environment Variables. Never add the course key to this repository.
 - Local mocked checks: `node tests/llm-api.test.mjs`.
 - GitHub Pages and Live Server serve the HTML but cannot run `/api/ask`.
+
+## Stock quote API lab
+
+- [Stock Quote](https://oim3690.vercel.app/quote.html) calls the server-side function at `/api/quote`.
+- `api/quote.js` reads `FINNHUB_API_KEY` from the Vercel project environment; the browser never receives the key.
+- Add a separate Finnhub key for this project in Vercel under **Settings → Environment Variables**, for both Production and Preview, then redeploy.
+- Keep `config.js` as a local placeholder only. It is ignored by Git and is not used by the quote page.
+- GitHub Pages and Live Server cannot run `/api/quote`; test the deployed Vercel URL.

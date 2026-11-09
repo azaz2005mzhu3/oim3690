@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stock Quote</title>
+  <style>
+    body {
+      max-width: 640px;
+      margin: 3rem auto;
+      padding: 0 1.25rem;
+      font: 1rem/1.5 "Segoe UI", Arial, sans-serif;
+      color: #23313f;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    label {
+      flex-basis: 100%;
+      font-weight: 600;
+    }
+
+    input,
+    button {
+      padding: 0.65rem 0.8rem;
+      font: inherit;
+    }
+
+    input {
+      flex: 1;
+      min-width: 12rem;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:disabled {
+      cursor: wait;
+    }
+
+    #quote-result {
+      min-height: 1.5em;
+      margin-top: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Stock Quote</h1>
+    <p>Look up the latest quote and previous close for a stock symbol.</p>
+    <form id="quote-form">
+      <label for="symbol">Stock symbol</label>
+      <input id="symbol" name="symbol" autocomplete="off" placeholder="AAPL" required>
+      <button type="submit">Get quote</button>
+    </form>
+    <p id="quote-result" role="status" aria-live="polite"></p>
+  </main>
+  <script src="js/main.js"></script>
+</body>
+</html>
