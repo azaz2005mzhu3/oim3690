@@ -11,11 +11,13 @@
 
 - MP1: Website for Someone Else — [repo](https://github.com/azaz2005mzhu3/ariel-portfolio) | [live](https://azaz2005mzhu3.github.io/ariel-portfolio/)
 - MP2: GPA & Grade Calculator — [repo](https://github.com/azaz2005mzhu3/gpa-grade-calculator) | [live](https://azaz2005mzhu3.github.io/gpa-grade-calculator/)
+- MP3: Smart Travel Packing Planner — [repo](https://github.com/azaz2005mzhu3/smart-travel-packing-planner)  | [live](https://azaz2005mzhu3.github.io/smart-travel-packing-planner/)
+
 
 
 ## LLM API lab
 
-- [Ask AI](ai-chat.html): the chat page calls the Vercel server function at `/api/ask`. The current Vercel API route returns HTTP 500 and needs a successful Vercel deployment before the chat can answer.
+- [Ask AI · OIM3690](https://oim3690-tau.vercel.app/ai-chat.html): the chat page calls the Vercel server function at `/api/ask`.
 - [Exercises, predictions and live verification checklist](logs/llm-api-tasks.md).
 - `api/ask.js` reads `OPENROUTER_API_KEY` from Vercel Environment Variables. Never add the course key to this repository.
 - Local mocked checks: `node tests/llm-api.test.mjs`.
