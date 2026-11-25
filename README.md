@@ -24,6 +24,18 @@
 - Local mocked checks: `node tests/llm-api.test.mjs`.
 - GitHub Pages and Live Server serve the HTML but cannot run `/api/ask`.
 
+## Buzzword Meter extension
+
+- [buzzword-meter/](buzzword-meter/buzzword-meter) is a Manifest V3 Chrome
+  extension: highlights buzzwords on any page, lets you add your own words,
+  ranks companies by buzzword score, and can ask the AI model to explain a
+  selected sentence in plain English via `/api/ask`.
+- Load it unpacked from `chrome://extensions` → Developer mode → Load
+  unpacked → select `buzzword-meter/buzzword-meter`.
+- See [buzzword-meter/buzzword-meter/README.md](buzzword-meter/buzzword-meter/README.md)
+  for setup, the `host_permissions` predict-and-check exercise, and ideas for
+  making the Plain English feature your own.
+
 ## Stock quote API lab
 
 - [Stock Quote](quote.html) calls the server-side function at `/api/quote`. The current Vercel deployment does not yet include this page or function.

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Buzzword Meter</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="banner">
+    <h1>Buzzword Meter</h1>
+    <p><span id="bannerTotal">0</span> buzzwords highlighted on this page</p>
+  </header>
+
+  <section>
+    <h2>Breakdown</h2>
+    <ul id="breakdown" class="list"></ul>
+  </section>
+
+  <section>
+    <h2>Your own words</h2>
+    <form id="addWordForm" class="inline-form">
+      <input id="newWord" type="text" placeholder="e.g. synergy" required>
+      <button type="submit">Add</button>
+    </form>
+    <ul id="customList" class="list chips"></ul>
+  </section>
+
+  <section>
+    <h2>Company rankings</h2>
+    <ul id="rankings" class="list"></ul>
+    <button id="clearRankings" class="secondary" type="button">Clear rankings</button>
+  </section>
+
+  <section>
+    <h2>Plain English</h2>
+    <p class="muted">Select a sentence on the page, then click Explain.</p>
+    <div id="selectedText" class="selected-text muted">No text selected yet.</div>
+    <button id="explainButton" type="button">Explain selected text</button>
+    <div id="answer" class="answer"></div>
+    <details>
+      <summary>Ask AI settings</summary>
+      <form id="settingsForm" class="inline-form stacked">
+        <label for="apiBase">Vercel project URL</label>
+        <input id="apiBase" type="url" placeholder="https://oim3690-tau.vercel.app">
+        <label for="instruction">Ask the model to&hellip;</label>
+        <textarea id="instruction" rows="2"></textarea>
+        <button type="submit">Save</button>
+      </form>
+      <small id="settingsStatus" class="muted"></small>
+    </details>
+  </section>
+
+  <script src="popup.js"></script>
+</body>
+</html>
