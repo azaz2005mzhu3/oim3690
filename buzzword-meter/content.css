@@ -1,0 +1,12 @@
+/* Sits in the normal page flow at the very top, so it pushes the posting
+   down instead of covering any links, buttons, or the application form. */
+#buzzword-meter-banner {
+  position: static;
+  margin: 0;
+  padding: 8px 12px;
+  background: #fff176;
+  color: #18324b;
+  font: 600 14px/1.4 system-ui, sans-serif;
+  text-align: center;
+  border-bottom: 2px solid #f5d300;
+}

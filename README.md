@@ -26,15 +26,14 @@
 
 ## Buzzword Meter extension
 
-- [buzzword-meter/](buzzword-meter/buzzword-meter) is a Manifest V3 Chrome
-  extension: highlights buzzwords on any page, lets you add your own words,
-  ranks companies by buzzword score, and can ask the AI model to explain a
-  selected sentence in plain English via `/api/ask`.
+- [buzzword-meter/](buzzword-meter) is a minimal Manifest V3 Chrome
+  extension: its content script runs only on `https://jobs.lever.co/*`,
+  counts buzzwords in the posting text, and shows the total in a banner at
+  the top of the page.
 - Load it unpacked from `chrome://extensions` → Developer mode → Load
-  unpacked → select `buzzword-meter/buzzword-meter`.
-- See [buzzword-meter/buzzword-meter/README.md](buzzword-meter/buzzword-meter/README.md)
-  for setup, the `host_permissions` predict-and-check exercise, and ideas for
-  making the Plain English feature your own.
+  unpacked → select `buzzword-meter`.
+- See [buzzword-meter/README.md](buzzword-meter/README.md) for the file
+  list and testing steps.
 
 ## Stock quote API lab
 
